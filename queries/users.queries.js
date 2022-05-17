@@ -1,26 +1,26 @@
-const User = require('../database/models/user.model');
-const Tweet = require('../database/models/user.model');
+const User = require("../database/models/user.model");
+const Tweet = require("../database/models/user.model");
 
 exports.createUser = async (user) => {
   try {
-    const hashedPassword = await User.hashPassword(user.password)
+    const hashedPassword = await User.hashPassword(user.password);
     const newUser = new User({
       username: user.username,
       local: {
         email: user.email,
-        password: hashedPassword
-      }
-    })
+        password: hashedPassword,
+      },
+    });
     return newUser.save();
   } catch (e) {
     throw e;
   }
-}
+};
 
 exports.findUserPerEmail = (email) => {
-  return User.findOne({'local.email': email}).exec();
-}
+  return User.findOne({ "local.email": email }).exec();
+};
 
 exports.findUserPerId = (id) => {
   return User.findById(id).exec();
-}
+};
