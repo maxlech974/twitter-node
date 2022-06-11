@@ -7,6 +7,7 @@ const {
 } = require("../queries/tweets.queries");
 
 exports.tweetList = async (req, res, next) => {
+  console.log(req.user)
   try {
     const tweets = await getTweets();
     res.render("tweets/tweet", {
